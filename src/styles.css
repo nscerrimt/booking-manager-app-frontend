@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.container {
+    width: 980px;
+    margin: auto;
+    display: block;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+}
+
+html {
+    overflow-y: scroll;
+  }
+
+  /*   SPACING   */
+.large-divider {
+    margin: 60px 0;
+}
+
+.medium-divider {
+    margin: 25px 0;
+}
+
+.small-divider {
+    margin: 10px 0;
+}

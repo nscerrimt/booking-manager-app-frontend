@@ -1,0 +1,28 @@
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.option {
+    background-color: #4f535c;
+    width: 45%;
+    height: calc(100vh - 700px);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    font-weight: 900px;
+    text-transform: uppercase;
+    margin: auto;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.option p {
+    width: auto;
+    text-align: center;
+    vertical-align: middle;
+}

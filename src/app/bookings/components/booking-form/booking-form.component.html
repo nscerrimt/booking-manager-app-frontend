@@ -1,0 +1,70 @@
+<app-header></app-header>
+<div class="container">
+    <h1>Fill in the below form to book a cab</h1>
+    <form id="booking-detail-form" [formGroup]="bookingDetailsForm" (ngSubmit)="onBookingSubmit()">
+
+        <mat-form-field class="form-field">
+            <input matInput type="text" formControlName="passengerName" placeholder="Name" required>
+            <mat-hint>E.g. Nick Scerri</mat-hint>
+            <mat-error>Please enter name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+            <input matInput type="tel" formControlName="passengerContactNumber" placeholder="Contact Number" required>
+            <span matPrefix>+356&nbsp;&nbsp;&nbsp;</span>
+            <mat-hint>E.g. +356 79797979</mat-hint>
+            <mat-error>Please enter contact number</mat-error>
+        </mat-form-field>
+        
+        <mat-slide-toggle id="asap" [color]="color" [checked]="asapTrue">
+            ASAP
+        </mat-slide-toggle>
+
+        <mat-form-field class="form-field">
+            <input matInput type="datetime-local" formControlName="pickupTime" placeholder="Pickup Time" required>
+            <mat-hint>E.g. Pickup Time</mat-hint>
+            <mat-error>Please insert pickup time</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+            <input matInput type="text" formControlName="price" placeholder="Price (€)" required>
+            <mat-hint>E.g. 12</mat-hint>
+            <mat-error>Please enter price</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+            <input matInput type="number" formControlName="noOfPassengers" placeholder="No Of Passengers" required>
+            <mat-hint>E.g. 4</mat-hint>
+            <mat-error>Please enter number of passengers</mat-error>
+        </mat-form-field>
+
+        <div class="large-divider"></div>
+
+        <div id="trip-way-point-details-form" formGroupName="tripWayPointDetailsForm">
+            <mat-form-field class="sub-form-field">
+                <input matInput type="text" formControlName="locality" placeholder="Locality" required>
+                <mat-hint>E.g. St. Julians</mat-hint>
+                <mat-error>Please enter locality</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="sub-form-field">
+                <input matInput type="text" formControlName="lat" placeholder="Latitude" required>
+                <mat-hint>E.g. 534.554</mat-hint>
+                <mat-error>Please enter latitude</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="sub-form-field">
+                <input matInput type="text" formControlName="lng" placeholder="Longitude" required>
+                <mat-hint>E.g. 24.423</mat-hint>
+                <mat-error>Please enter longitude</mat-error>
+            </mat-form-field>
+
+            <mat-checkbox id="last-stop" class="sub-form-field" [checked] = "lastStop" (change) = "toggleLastStop()">
+                Last Stop
+            </mat-checkbox>
+        </div>
+        <button id="submit-button" [disabled] = "this.bookingDetailsForm.invalid" mat-button type="submit">Submit Booking</button>
+    </form>
+</div>
+
+<div style="height: 100px;"></div>

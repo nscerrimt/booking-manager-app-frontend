@@ -1,0 +1,63 @@
+<div id="booking-schedule" *ngIf="bookings">
+    <h1>Bookings</h1>
+    <table mat-table [dataSource]="bookings" multiTemplateDataRows>
+        <ng-container matColumnDef="passenger_name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let booking"> {{booking.passengerName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="contact_number">
+            <th mat-header-cell *matHeaderCellDef> Contact Number </th>
+            <td mat-cell *matCellDef="let booking"> {{booking.passengerContactNumber}} </td>
+        </ng-container>
+        <ng-container matColumnDef="number_of_passengers">
+            <th mat-header-cell *matHeaderCellDef> # of Passengers </th>
+            <td mat-cell *matCellDef="let booking"> {{booking.noOfPassengers}} </td>
+        </ng-container>
+        <ng-container matColumnDef="pick_up_time">
+            <th mat-header-cell *matHeaderCellDef> Pick-Up Time</th>
+            <td mat-cell *matCellDef="let booking"> {{booking.pickupTime | date:'MMM d, y, h:mm a'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price (€) </th>
+            <td mat-cell *matCellDef="let booking"> {{booking.price}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let booking">
+
+                <button class="action-button" mat-mini-fab (click)="onDeleteBookingClick(booking)">
+                    <mat-icon class="action-icon">delete</mat-icon>
+                </button>
+                <button class="action-button" mat-mini-fab (click)="onUpdateBookingClick(booking)">
+                    <mat-icon class="action-icon">edit</mat-icon>
+                </button>
+                </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let booking" [attr.colspan]="displayedColumns.length">
+                <div class="element-detail" [@detailExpand]="booking == expandedClass ? 'expanded' : 'collapsed'">
+                    <div class="element-description">
+                        <strong>Trip Way Points</strong>
+                        <div *ngFor="let tripWayPoint of booking.tripWayPoints">
+                            <p><i>{{tripWayPoint.locality}}</i> ({{tripWayPoint.lat}}, {{tripWayPoint.lng}}) <span
+                                    *ngIf="tripWayPoint.lastStop === true"><strong>- LAST STOP</strong></span></p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="element-row"
+            [class.expanded-row]="expandedClass === row" (click)="expandedClass = row">
+        </tr>
+
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+    </table>
+
+</div>
+
+<div id="booking-schedule" *ngIf="!bookings">
+    <p class="mat-body-1">No bookings have been made.</p>
+</div>
