@@ -1,10 +1,10 @@
 
 # Booking Manager App
 
-## Before Running Backend
-- Set "spring.rabbitmq.host" property in application.properties to point to the local rabbit-mq instance
-
-```docker run -d --hostname ecabs-rabbit --name rabbit-assignment -e RABBITMQ_DEFAULT_VHOST=/ -p 4369:4369 -p 5672:5672 -p 15672:15672 -p 25672:25672 rabbitmq:3-management```
+## Running Frontend
+- ng serve
+- Runs on **localhost:4200**
+- Click on ecabs logo to go to main screen
 
 ## Assumptions
 - "Waiting Time" and "Rating" and "tripWayPointTimestamp" were not included in the front-end data object since it was not clear on how/when these values would be inserted.
